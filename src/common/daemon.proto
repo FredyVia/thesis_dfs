@@ -1,0 +1,75 @@
+syntax = "proto3";
+package spkdfs;
+
+option cc_generic_services = true;
+
+import "common/common.proto";
+
+// first filechunk is always filename
+// only when data is empty, is file's meta data, else is file's data;
+// protobuf will solve empty field, won't cause network bandwidth waste
+message FileMetaData{
+  string path = 1; // path = 1;
+  int64 filesize = 2;   // 文件大小
+  string filehash = 3;  // 文件的 hash 值
+}
+
+message FileChunk {
+  bool is_meta_data = 1;
+  FileMetaData metadata = 2;
+  bytes data = 3;
+}
+
+message DaemonPutRequest {
+  string local_path = 1;
+  string remote_path = 2;
+  string storage_type = 3;
+}
+
+message DaemonPutResponse {
+  Response common = 1;
+  int64 id = 2;
+  string path = 3;
+}
+
+message DaemonGetRequest {
+  string remote_path = 1;
+  string local_path = 2;  
+}
+
+message DaemonGetResponse {
+  Response common = 1; 
+}
+
+message DaemonSyncRequest {
+  string local_path = 1;
+  string remote_path = 2; 
+}
+
+message DaemonSyncResponse {
+  Response common = 1;
+  bool finished = 2;
+  bool success = 3;
+}
+
+service DaemonService {
+  // 文件上传
+  // rpc put(stream FileChunk) returns (DaemonPutResponse);
+  rpc put(DaemonPutRequest) returns (DaemonPutResponse);
+
+  // 文件下载
+  // rpc get(DaemonGetRequest) returns (stream FileChunk);
+  rpc get(DaemonGetRequest) returns (DaemonGetResponse);
+
+  // 立即写入
+  rpc sync(DaemonSyncRequest) returns (DaemonSyncResponse);
+
+  // ls
+  rpc ls(CommonPathRequest) returns (CommonPathResponse);
+
+  // rm
+  rpc rm(CommonPathRequest) returns (CommonPathResponse);
+
+  /* debug */
+  rpc debug(DaemonSyncRequest) returns (DaemonSyncResponse);
+}

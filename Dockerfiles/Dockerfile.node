@@ -1,0 +1,25 @@
+FROM --platform=$BUILDPLATFORM registry.cn-chengdu.aliyuncs.com/little_bee/spkdfs_builder:latest AS builder
+ARG TARGETARCH
+ARG TARGETPLATFORM
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends crossbuild-essential-${TARGETARCH} && apt clean;
+RUN git clone https://github.com/microsoft/vcpkg -b master --depth 1 /vcpkg && /vcpkg/bootstrap-vcpkg.sh
+COPY . /spkdfs
+WORKDIR /spkdfs
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+  export COMPILER=/usr/bin/x86_64-linux-gnu-g++ && \
+  export TRIPLET=x64-linux-release; \
+  elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+  export COMPILER=/usr/bin/aarch64-linux-gnu-g++ && \
+  export TRIPLET=arm64-linux-release; \
+  else \
+  echo "Unsupported architecture: $TARGETPLATFORM" && exit 1; \
+  fi && \
+  export VCPKG_ROOT=/vcpkg && \
+  cmake --workflow --preset=${TRIPLET} && \
+  cp build/${TRIPLET}/src/node_main /node
+
+FROM ubuntu:24.04
+COPY --from=builder /node /node
+ENTRYPOINT [ "/node" ]
+CMD [ "--help" ]
+

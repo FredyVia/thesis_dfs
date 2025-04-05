@@ -1,0 +1,7 @@
+FROM ubuntu:24.04
+COPY vcpkg_installed/x64-linux-dynamic/lib/ /vcpkg_lib
+COPY build/x64-linux-dynamic/src/node_main /node_main
+ENV LD_LIBRARY_PATH=/vcpkg_lib
+# COPY build/x64-linux-release/src/node_main /node_main
+ENTRYPOINT [ "/node_main" ]
+CMD [ "--help" ]

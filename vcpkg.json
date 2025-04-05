@@ -1,0 +1,42 @@
+{
+  "name": "spkdfs",
+  "version": "1.0.0",
+  "description": "A simple distributed file system that uses erasure code storage and supports a certain number of node crashes without losing data",
+  "homepage": "https://github.com/fredyvia/spkdfs",
+  "license": "GPL-3.0",
+  "dependencies": [
+    "braft",
+    "breakpad",
+    "brpc",
+    "cryptopp",
+    "dbg-macro",
+    "gflags",
+    "glog",
+    "isal",
+    "liberasurecode",
+    "nlohmann-json",
+    "protobuf",
+    "rocksdb"
+  ],
+  "features": {
+    "client": {
+      "description": "Build Client",
+      "dependencies": [
+        "libfuse"
+      ]
+    },
+    "tests": {
+      "description": "Build Tests",
+      "dependencies": [
+        "gtest"
+      ]
+    },
+    "benchmark": {
+      "description": "Build Benchmarks",
+      "dependencies": [
+        "benchmark",
+        "gperftools"
+      ]
+    }
+  }
+}

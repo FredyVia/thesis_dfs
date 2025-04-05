@@ -1,0 +1,34 @@
+syntax = "proto3";
+package spkdfs;
+option cc_generic_services = true;
+
+import "common/common.proto";
+
+message DNGetRequest {
+  string blkid = 1;
+};
+
+message DNGetResponse {
+  Response common = 1;
+};
+
+message DNPutRequest {
+  string blkid = 1;
+};
+
+message DNGetNamenodesResponse {
+  Response common = 1;
+  repeated string nodes = 2;
+};
+
+message DNGetDatanodesResponse {
+  Response common = 1;
+  repeated string nodes = 2;
+};
+
+service DatanodeService {
+  rpc put(DNPutRequest) returns (CommonResponse);
+  rpc get(DNGetRequest) returns (DNGetResponse);
+  rpc get_namenodes(Request) returns (DNGetNamenodesResponse);
+  rpc get_datanodes(Request) returns (DNGetDatanodesResponse);
+};

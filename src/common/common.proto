@@ -1,0 +1,45 @@
+syntax="proto3";
+package spkdfs;
+option cc_generic_services = true;
+
+enum ERROR_CODE {
+  COMMON_EXCEPTION = 0;
+  PATH_EXISTS_EXCEPTION = 1;
+  PATH_NOT_EXISTS_EXCEPTION = 2;
+  EXPECTED_FILE_EXCEPTION = 3;
+  EXPECTED_DIR_EXCEPTION = 4;
+  EXPECTED_LOCK_CONFLICT = 5;
+  REDIRECT_TO_MASTER = 6;
+  OUT_OF_RANGE_EXCEPTION = 7;
+};
+
+// 定义一个错误消息
+message ErrorMessage {
+  ERROR_CODE code = 1;  // 错误码
+  string message = 2;  // 错误描述信息
+};
+
+message Request {
+};
+
+message Response {
+  bool success = 1;
+  ErrorMessage fail_info = 2;
+};
+
+message CommonResponse {
+  Response common = 1;
+};
+
+message CommonPathRequest {
+  string path = 1;
+};
+
+message CommonPathResponse {
+  Response common = 1;
+  string data = 2;
+};
+
+service CommonService {
+  rpc echo(Request) returns (CommonResponse);
+}

@@ -1,0 +1,12 @@
+/build
+/.vscode
+.DS_Store
+/tmp
+/venv
+/Testing
+/mnt
+/.cache
+/compile_commands.json
+/vcpkg_installed
+/python/client
+/python/common

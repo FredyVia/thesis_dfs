@@ -1,0 +1,10 @@
+/.vscode
+.DS_Store
+/tmp
+/venv
+/docker-compose.yml
+/Testing
+/mnt
+/node.conf
+/.cache
+/compile_commands.json

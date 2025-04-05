@@ -1,0 +1,67 @@
+syntax = "proto3";
+package spkdfs;
+option cc_generic_services = true;
+
+import "common/common.proto";
+
+message NNGetResponse {
+  Response common = 1;
+  string storage_type = 2;
+  uint64 filesize = 3;
+  repeated string blkids = 4;
+};
+
+message NNPutRequest {
+  string path = 1;
+  string storage_type = 2;
+};
+
+message NNPutResponse {
+  Response common = 1;
+};
+
+message NNPutOKRequest {
+  string path = 1;
+  uint64 filesize = 2;
+  repeated string sub = 3;
+};
+
+message NNGetMasterResponse {
+  Response common = 1;
+  string node = 2;
+}
+
+message NNGetDatanodesResponse {
+  Response common = 1;
+  repeated string nodes = 2;
+};
+
+message NNLockRequest {
+  repeated string paths = 1;
+}
+
+message NNPutRequestBatch {
+  repeated NNPutRequest reqs = 1;
+}
+
+message NNPutResponseBatch {
+  Response common = 1;
+}
+
+message NNPutOKRequestBatch {
+  repeated NNPutOKRequest reqs = 1;
+}
+
+service NamenodeService {
+  rpc ls(CommonPathRequest) returns (CommonPathResponse);
+  rpc mkdir(CommonPathRequest) returns (CommonResponse);
+  rpc rm(CommonPathRequest) returns (CommonResponse);
+  rpc put(NNPutRequest) returns (NNPutResponse);
+  // 批量put
+  rpc put_batch(NNPutRequestBatch) returns (NNPutResponseBatch);
+  // datanode notice namenode blk storeed ok;
+  rpc put_ok(NNPutOKRequest) returns (CommonResponse);
+  rpc put_ok_batch(NNPutOKRequestBatch) returns (CommonResponse);
+  rpc get_master(Request) returns (NNGetMasterResponse);
+  rpc update_lock(NNLockRequest) returns (CommonResponse);
+};

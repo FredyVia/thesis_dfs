@@ -1,0 +1,169 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "x64-linux-dynamic",
+      "generator": "Ninja",
+      "environment": {
+        "TRIPLET": "x64-linux-dynamic"
+      },
+      "binaryDir": "${sourceDir}/build/$env{TRIPLET}",
+      "cacheVariables": {
+        "VCPKG_INSTALLED_DIR": "${sourceDir}/vcpkg_installed",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "$env{TRIPLET}",
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "x86_64",
+        "CMAKE_CXX_COMPILER": "/usr/bin/x86_64-linux-gnu-g++",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "VCPKG_OVERLAY_PORTS": "${sourceDir}/vcpkg/ports",
+        "BUILD_NODE": true,
+        "BUILD_CLIENT": true,
+        "BUILD_TESTS": true,
+        "BUILD_BENCHMARK": true,
+        "VCPKG_LIBRARY_LINKAGE": "dynamic"
+      }
+    },
+    {
+      "name": "arm64-linux-dynamic",
+      "generator": "Ninja",
+      "environment": {
+        "TRIPLET": "arm64-linux-dynamic"
+      },
+      "binaryDir": "${sourceDir}/build/$env{TRIPLET}",
+      "cacheVariables": {
+        "VCPKG_INSTALLED_DIR": "${sourceDir}/vcpkg_installed",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "$env{TRIPLET}",
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "aarch64",
+        "CMAKE_CXX_COMPILER": "/usr/bin/aarch64-linux-gnu-g++",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "VCPKG_OVERLAY_PORTS": "${sourceDir}/vcpkg/ports",
+        "BUILD_NODE": true,
+        "BUILD_CLIENT": true,
+        "BUILD_TESTS": false,
+        "BUILD_BENCHMARK": false,
+        "VCPKG_LIBRARY_LINKAGE": "dynamic"
+      }
+    },
+    {
+      "name": "x64-linux-release",
+      "generator": "Ninja",
+      "environment": {
+        "TRIPLET": "x64-linux-release"
+      },
+      "binaryDir": "${sourceDir}/build/$env{TRIPLET}",
+      "cacheVariables": {
+        "VCPKG_INSTALLED_DIR": "${sourceDir}/vcpkg_installed",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "$env{TRIPLET}",
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "x86_64",
+        "CMAKE_CXX_COMPILER": "/usr/bin/x86_64-linux-gnu-g++",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "VCPKG_OVERLAY_PORTS": "${sourceDir}/vcpkg/ports",
+        "BUILD_NODE": true,
+        "BUILD_CLIENT": true,
+        "BUILD_TESTS": true,
+        "BUILD_BENCHMARK": true,
+        "VCPKG_LIBRARY_LINKAGE": "static"
+      }
+    },
+    {
+      "name": "arm64-linux-release",
+      "generator": "Ninja",
+      "environment": {
+        "TRIPLET": "arm64-linux-release"
+      },
+      "binaryDir": "${sourceDir}/build/$env{TRIPLET}",
+      "cacheVariables": {
+        "VCPKG_INSTALLED_DIR": "${sourceDir}/vcpkg_installed",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "$env{TRIPLET}",
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "aarch64",
+        "CMAKE_CXX_COMPILER": "/usr/bin/aarch64-linux-gnu-g++",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "VCPKG_OVERLAY_PORTS": "${sourceDir}/vcpkg/ports",
+        "BUILD_NODE": true,
+        "BUILD_CLIENT": true,
+        "BUILD_TESTS": false,
+        "BUILD_BENCHMARK": false,
+        "VCPKG_LIBRARY_LINKAGE": "static"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "x64-linux-dynamic",
+      "configurePreset": "x64-linux-dynamic"
+    },
+    {
+      "name": "arm64-linux-dynamic",
+      "configurePreset": "arm64-linux-dynamic"
+    },
+    {
+      "name": "x64-linux-release",
+      "configurePreset": "x64-linux-release"
+    },
+    {
+      "name": "arm64-linux-release",
+      "configurePreset": "arm64-linux-release"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "x64-linux-dynamic",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "x64-linux-dynamic"
+        },
+        {
+          "type": "build",
+          "name": "x64-linux-dynamic"
+        }
+      ]
+    },
+    {
+      "name": "arm64-linux-dynamic",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "arm64-linux-dynamic"
+        },
+        {
+          "type": "build",
+          "name": "arm64-linux-dynamic"
+        }
+      ]
+    },
+    {
+      "name": "x64-linux-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "x64-linux-release"
+        },
+        {
+          "type": "build",
+          "name": "x64-linux-release"
+        }
+      ]
+    },
+    {
+      "name": "arm64-linux-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "arm64-linux-release"
+        },
+        {
+          "type": "build",
+          "name": "arm64-linux-release"
+        }
+      ]
+    }
+  ]
+}

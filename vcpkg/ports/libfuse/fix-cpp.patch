@@ -1,0 +1,12 @@
+diff --git a/include/fuse.h b/include/fuse.h
+index 9897c85..7be183c 100644
+--- a/include/fuse.h
++++ b/include/fuse.h
+@@ -64,6 +64,7 @@ enum fuse_fill_dir_flags {
+ 	 * It is okay to set FUSE_FILL_DIR_PLUS if FUSE_READDIR_PLUS is not set
+ 	 * and vice versa.
+ 	 */
++	FUSE_FILL_DIR_DEFAULTS = 0,
+ 	FUSE_FILL_DIR_PLUS = (1 << 1)
+ };
+ 

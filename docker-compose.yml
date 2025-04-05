@@ -1,0 +1,176 @@
+services:
+
+  node1:
+    image: spkdfs:latest
+    hostname: node1
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_1/data:/spkdfs/data
+      - ./tmp/spkdfs_1/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_1/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.101
+
+  node2:
+    image: spkdfs:latest
+    hostname: node2
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_2/data:/spkdfs/data
+      - ./tmp/spkdfs_2/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_2/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.102
+
+  node3:
+    image: spkdfs:latest
+    hostname: node3
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_3/data:/spkdfs/data
+      - ./tmp/spkdfs_3/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_3/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.103
+
+  node4:
+    image: spkdfs:latest
+    hostname: node4
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_4/data:/spkdfs/data
+      - ./tmp/spkdfs_4/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_4/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.104
+
+  node5:
+    image: spkdfs:latest
+    hostname: node5
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_5/data:/spkdfs/data
+      - ./tmp/spkdfs_5/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_5/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.105
+
+  node6:
+    image: spkdfs:latest
+    hostname: node6
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_6/data:/spkdfs/data
+      - ./tmp/spkdfs_6/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_6/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.106
+
+  node7:
+    image: spkdfs:latest
+    hostname: node7
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_7/data:/spkdfs/data
+      - ./tmp/spkdfs_7/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_7/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.107
+
+  node8:
+    image: spkdfs:latest
+    hostname: node8
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_8/data:/spkdfs/data
+      - ./tmp/spkdfs_8/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_8/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.108
+
+  node9:
+    image: spkdfs:latest
+    hostname: node9
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_9/data:/spkdfs/data
+      - ./tmp/spkdfs_9/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_9/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.109
+
+  node10:
+    image: spkdfs:latest
+    hostname: node10
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_10/data:/spkdfs/data
+      - ./tmp/spkdfs_10/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_10/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.110
+
+  node11:
+    image: spkdfs:latest
+    hostname: node11
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_11/data:/spkdfs/data
+      - ./tmp/spkdfs_11/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_11/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.111
+
+  node12:
+    image: spkdfs:latest
+    hostname: node12
+    command:
+      [ "--flagfile=/spkdfs/node.conf" ]
+    volumes:
+      - ./tmp/spkdfs_12/data:/spkdfs/data
+      - ./tmp/spkdfs_12/coredumps:/spkdfs/coredumps
+      - ./tmp/spkdfs_12/logs:/spkdfs/logs
+      - ./node.conf:/spkdfs/node.conf:ro
+    networks:
+      spkdfs_net:
+        ipv4_address: 192.168.88.112
+networks:
+  spkdfs_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.88.0/24
+          gateway: 192.168.88.1

@@ -1,0 +1,2 @@
+FROM ubuntu:24.04
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends curl zip unzip tar pkg-config flex bison autoconf libtool automake linux-libc-dev python3 ca-certificates cmake git build-essential ninja-build nasm yasm && apt clean;
